@@ -87,3 +87,9 @@ CREATE TABLE ORDERDETAIL
   CONSTRAINT FK_ORDERDETAIL_PRODUCT FOREIGN KEY (ProductID) REFERENCES PRODUCT(ProductID),
   CONSTRAINT FK_ORDERDETAIL_ORDERS FOREIGN KEY (OrderID) REFERENCES ORDERS(OrderID)
 );
+
+alter table ORDERS 
+ alter column StatusOrders nvarchar(50) not null;
+
+ alter table USED_IN 
+ alter column Quantity nvarchar(50) not null;
