@@ -1,4 +1,4 @@
-CREATE TABLE CUSTOMER
+﻿CREATE TABLE CUSTOMER
 (
   CustomerID INT NOT NULL,
   FirstName NVARCHAR(50) NOT NULL,
@@ -88,8 +88,17 @@ CREATE TABLE ORDERDETAIL
   CONSTRAINT FK_ORDERDETAIL_ORDERS FOREIGN KEY (OrderID) REFERENCES ORDERS(OrderID)
 );
 
+-- sửa kiểu dữ kiệu
 alter table ORDERS 
  alter column StatusOrders nvarchar(50) not null;
 
+ -- sửa kiểu dữ liệu
  alter table USED_IN 
- alter column Quantity nvarchar(50) not null;
+  alter column Quantity nvarchar(50) not null;
+
+ -- đổi tên cột
+  exec sp_rename'USED_IN.Quantity', 'ItemWeight','column'; 
+
+ -- cập nhật lại giá trị cho cột ORDERDETAIL
+UPDATE ORDERDETAIL
+SET TotalPrice = Price * Quantity;

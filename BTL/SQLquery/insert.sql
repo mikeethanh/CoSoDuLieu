@@ -68,7 +68,7 @@ Values
 (10,N'Đá',N'Thực phẩm','2024-03-14',7),
 (11,N'Trái cây sấy khô',N'Thực phẩm','2023-12-22',8);
 
-Insert into PRODUCT(ProductID, Price, TypeProduct, Size, ProductName)
+insert into PRODUCT(ProductID, Price, TypeProduct, Size, ProductName)
 values
 (1,35000,N'Đồ uống', 'S',N'Cà phê đen'),
 (2,32000, N'Đồ uống', 'S',N'Cà phê nâu'),
@@ -78,6 +78,17 @@ values
 (6,15000, N'Đồ uống', 'L',N'Trà xanh'),
 (7,30000, N'Đồ uống', 'L',N'Trà ô long'),
 (8,32000, N'Đồ uống', 'L',N'Trà đen');
+
+insert into ORDERDETAIL(OrderID, ProductID, Price, Quantity)
+values 
+(122,4,30000,3),
+(122,7,30000,2);
+
+insert into USED_IN(ProductID, ItemID, Quantity)
+values
+(1, 1, '0.1g'),
+(1, 9, 0.1),
+(1, 10, 0.1);
 
 --insert more
 insert into staff(StaffID,FirstName,LastName,PhoneNumber,RoleStaff,Salary,DateStartWork,Allowance)
@@ -92,3 +103,98 @@ Values
 insert into ORDERS(OrderID,OrderDate,TotalPrice,StatusOrders,LocationOrders,CustomerID,StaffID)
 Values
 	(141,'2023-06-15','150000',N'Đã hoàn thành',N'Cầu Giấy',1,28);	
+
+--
+insert into ORDERDETAIL(Price,Quantity,TotalPrice,ProductID,OrderID)
+values
+(15000,10,150000,6,122),
+
+(35000,2,70000,1,123),
+(28000,1,28000,5,123),
+
+(30000,1,30000,7,124),
+
+(28000,1,28000,5,125),
+
+(35000,2,70000,1,126),
+(30000,1,30000,4,126),
+(30000,1,30000,7,126),
+(15000,1,15000,6,126),
+
+(35000,2,70000,3,127),
+(30000,2,60000,7,127),
+(28000,1,28000,5,127),
+
+(35000,4,140000,1,128),
+(30000,2,60000,7,128),
+
+(15000,1,15000,6,129),
+(30000,2,60000,4,129),
+
+(15000,1,15000,6,130),
+
+(15000,1,15000,6,131),
+
+(32000,1,32000,2,132),
+
+(30000,1,30000,4,133),
+(15000,1,15000,6,133),
+
+(30000,1,30000,7,134),
+(32000,1,32000,2,134),
+
+(35000,1,35000,3,135),
+
+(30000,1,30000,4,136),
+(30000,1,30000,7,136),
+
+(32000,1,32000,8,137),
+(28000,1,28000,5,137),
+(30000,1,30000,4,137),
+
+
+(35000,1,35000,3,138);
+
+insert into USED_IN(ProductID,ItemID,ItemWeight)
+values
+(1,1,'10 gram'),
+(1,10,'50-100 gram'),
+
+(2,4,'8-10 gram'),
+(2,1,'50 ml'),
+(2,10,'50-100 gram'),
+
+(3,2,'5-7 gram'),
+(3,4,'80-100 ml'),
+(3,8,'25-30 ml'),
+(3,10,'50-100 gram'),
+(3,3,'5-15 ml'),
+
+(4,1,'5 gram'),
+(4,4,'50 ml'),
+(4,8,'20-40 ml'),
+(4,10,'50-100 gram'),
+(4,6,'2-3 gram'),
+
+(5,1,'5 gram'),
+(5,4,'50 ml'),
+(5,8,'20-40 ml'),
+(5,3,'5-15 ml'),
+(5,10,'50-100 gram'),
+
+(6,2,'5-7 gram'),
+(6,3,'5-7 ml'),
+(6,8,'15-20 ml'),
+(6,10,'50-100 gram'),
+(6,9,'10 ml'),
+
+(7,2,'5-7 gram'),
+(7,7,'120 gram'),
+(7,8,'40 ml'),
+(7,10,'50-100 gram'),
+(7,11,'10 gram'),
+
+(8,2,'5-7 gram'),
+(8,8,'20-35 ml'),
+(8,6,'2-4 gram'),
+(8,10,'50-100 gram');
