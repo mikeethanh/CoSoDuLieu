@@ -1,4 +1,4 @@
-﻿--1. Cho biết mã, tên các sản phẩm có giá trên 30000vnd
+﻿--1. Cho biết mã, tên các sản phẩm có giá trên 30000vnd.
 select p.ProductID, p.ProductName, p.Price
 from PRODUCT as p
 where p.Price > 30000
@@ -15,7 +15,7 @@ from ORDERS as O
 where month(O.OrderDate) = 6 and year(O.OrderDate) = 2023
 
 	
---4. Hãy thống kế những nhân viên mức lương cao nhất công ty theo từng vị trí làm việc 
+--4. Hãy thống kế những nhân viên mức lương cao nhất công ty theo từng vị trí làm việc.
 SELECT RoleStaff, MAX(Salary) AS MaxSalary
 FROM STAFF
 GROUP BY RoleStaff;
@@ -39,14 +39,14 @@ where I.ItemName in (N'Hạt cà phê')
 
 
 --7. Cho biết sản phẩm bán chạy nhất trong năm 2023.
-select top 1 OD.ProductID, sum(OD.Quantity) as QuantityProduct 
+select top 1 OD.ProductID, P.ProductName, sum(OD.Quantity) as QuantityProduct 
 from ORDERDETAIL as OD
 join PRODUCT as P
 on OD.ProductID = P.ProductID
 join ORDERS as O
 on O.OrderID = OD.OrderID
 where year(O.OrderDate) = 2023
-group by OD.ProductID
+group by OD.ProductID, P.ProductName
 order by sum(OD.Quantity) desc
 
 --8. Cho biết tên nhân viên, mức lương( tính cả trợ cấp ) và tổng số đơn hàng của từng nhân 
@@ -90,8 +90,47 @@ order by C.LastName, C.FirstName
 
 --11. Hãy cho biết tên nguyên liệu và tên nhà cung cấp nguyên liệu mà cửa hàng đã nhập về trong năm 2024,
 --sắp xếp thứ tự giảm dần theo số nguyên liệu được sử dụng trong sản phẩm
- 
+select I.ItemName, S.SupplierName, count(UI.ItemID) as ItemUsed
+from ITEM as I
+join SUPPLIER as S
+on I.SupplierID = S.SupplierID
+join USED_IN as UI
+on UI.ItemID = I.ItemID
+where year(I.SupplyDate) = 2024 
+group by I.ItemName, S.SupplierName
+order by count(UI.ItemID)
 
+--12. Lấy ra thông tin về  các nguyên liệu có cùng thể loại với nguyên liệu 'Hạt cà phê'.
+select I.ItemName, I.TypeItem
+from ITEM as I
+where I.TypeItem = (
+	select I2.TypeItem
+	from ITEM as I2
+	where I2.ItemName in (N'Hạt cà phê')
+)
+
+-- 13. Lọc ra tên sản phẩm và tống số đơn hàng có chứa sản phẩm đó.
+select ProductName, TotalOrders
+from 
+	(select p.ProductID, p.ProductName, (
+				select COUNT(*)
+				from ORDERDETAIL as od
+				where od.ProductID = p.ProductID
+			) as TotalOrders
+	FROM PRODUCT as p) AS Temp;
+
+ --14. Lấy thông tin về đơn hàng, cùng với tổng giá trị đơn hàng và tỷ lệ giữa tổng giá trị đơn hàng so 
+ --với phí giao hàng.
+ select O.OrderID, O.OrderDate, O.TotalPrice,
+		(select sum(OD.Price * OD.Quantity)
+		 from ORDERDETAIL as OD
+		 where OD.OrderID = O.OrderID
+		) as TotalPricePerOrders,
+		round((select sum(OD.Price * OD.Quantity)
+		 from ORDERDETAIL as OD
+		 where OD.OrderID = O.OrderID
+		)/O.TotalPrice,2) as Ratio
+ from ORDERS as O
 
 --15. Hãy thống kê những khách hàng có tổng giá trị tất cả đơn đặt hàng trong tháng 6 lớn hơn 200000
 --và đơn đặt hàng không chứa sản phẩm có giá rẻ nhất trong tất cả sản phẩm, sắp xếp thứ tự từ điển theo họ và tên.

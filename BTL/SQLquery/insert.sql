@@ -1,5 +1,5 @@
 ﻿--insert in to CUSTOMER
-insert into CUSTOMER( FirstName, LastName, PhoneNumber, Email)
+insert into CUSTOMER( LastName, FirstName, PhoneNumber, Email)
 Values
 	(N'Anh',N'Nguyễn','0981651321','anhnguyen@gmail.com'),
 	(N'Phương',N'Nguyễn','0981234321','phuongnguyen@gmail.com'),
@@ -18,7 +18,7 @@ Values
 	(N'Mai',N'Trịnh','0961651901','trinhmaii@gmail.com');
 
 --insert into STAFF
-insert into staff(StaffID,FirstName,LastName,PhoneNumber,RoleStaff,Salary,DateStartWork,Allowance)
+insert into staff(StaffID,LastName,FirstName,PhoneNumber,RoleStaff,Salary,DateStartWork,Allowance)
 values
 	(10,N'Cảnh',N'Lữ','0981651211',N'quản lý',7500000,'2022-06-15',100000),
 	(15,N'Ngọc',N'Phạm','0910651881',N'pha chế',4500000,'2023-06-25',150000),
@@ -27,7 +27,7 @@ values
 	(22,N'Vy',N'Cầm','0981654443',N'thu ngân',5000000,'2024-01-30',0),
 	(24,N'Thế',N'Anh','0981651416',N'thu ngân',5500000,'2023-08-10',100000),
 	(26,N'Lợi',N'Lê','0981654276',N'thu ngân',5500000,'2023-06-20',300000),
-	(28,N'Cẩm',N'Tú','0981651232',N'thu ngân',5500000,'2024-06-15',100000),
+	(28,N'Cẩm',N'Tú','0981651232',N'thu ngân',5500000,'2024-02-15',100000),
 	(31,N'Thai',N'Trần','0961651974',N'pha chế',4000000,'2024-02-28',0),
 	(32,N'Thu',N'Duy','0961351871',N'pha chế',4500000,'2023-07-01',20000),
 	(35,N'Vi',N'Cầm','0961654443',N'thu ngân',5000000,'2024-01-30',0),
@@ -44,7 +44,7 @@ values
 (6,N'Đông Tăng','dongtang@gmail.com','0912791664',N'Lá trà Đông Tăng'),
 (7,N'McCormick','mrcormick@gmail.com','0981610948',N'Đường McCormick'),
 (8,N'Đại Thành','daithanh@gmail.com','0981667109',N'Trái cây'),
-(9,N'Ba Vì Dairy Farm','baividairyfarm@gmail.com','098117925',N'Sữa chua Ba Vì');
+(9,N'Ba Vì Dairy Farm','baividairyfarm@gmail.com','0981179253',N'Sữa chua Ba Vì');
 
 -- insert into ITEM
 insert into ITEM(ItemID, ItemName, TypeItem, SupplyDate, SupplierID)
@@ -74,27 +74,30 @@ values
 (8,32000, N'Đồ uống', 'L',N'Trà đen');
 
 -- insert into ORDERS
+insert into ORDERS(OrderID,OrderDate,ShipVia,TotalPrice,StatusOrders,LocationOrders,CustomerID,StaffID)
+Values
+(122,'2023-06-15',20000,170000,N'Đã hoàn thành',N'Cầu Giấy',11,22),
+(123,'2023-06-15',30000,128000,N'Đã hoàn thành',N'Thanh Xuân',2,24),
+(124,'2023-06-15',20000,50000,N'Đã hoàn thành',N'Cầu Giấy',12,26),
+(125,'2023-06-16',25000,53000,N'Đã hoàn thành',N'Bắc Từ Liêm ',6,26),
+(127,'2023-06-16',30000,188000,N'Đã hoàn thành',N'Thanh Xuân',14,26),
+(128,'2023-06-16',30000,230000,N'Đã hoàn thành',N'Tây Hồ',6,24),
+(129,'2023-06-16',20000,95000,N'Đã hoàn thành',N'Cầu Giấy',13,22),
+(133,'2023-06-18',30000,75000,N'Đã hoàn thành',N'Tây Hồ',15,24),
+(136,'2023-06-19',30000,90000,N'Đã hoàn thành',N'Ba Đình',3,24),	
+(139,'2023-06-15',20000,170000,N'Đã hoàn thành',N'Cầu Giấy',1,22),
+(140,'2023-06-15',30000,128000,N'Đã hoàn thành',N'Thanh Xuân',5,24);
+
 insert into ORDERS(OrderID,OrderDate,TotalPrice,StatusOrders,LocationOrders,CustomerID,StaffID)
 Values
-	(122,'2023-06-15','150000',N'Đã hoàn thành',N'Cầu Giấy',31,22),
-(123,'2023-06-15','98000',N'Đã hoàn thành',N'Thanh Xuân',32,24),
-(124,'2023-06-15','30000',N'Đã hoàn thành',N'Cầu Giấy',42,26),
-(125,'2023-06-16','28000',N'Đã hoàn thành',N'Bắc Từ Liêm ',36,26),
-(126,'2023-06-16','145000',N'Đã hủy đơn',N'Cầu Giấy',39,26),
-(127,'2023-06-16','158000',N'Đã hoàn thành',N'Thanh Xuân',34,26),
-(128,'2023-06-16','200000',N'Đã hoàn thành',N'Tây Hồ',32,24),
-(129,'2023-06-16','75000',N'Đã hoàn thành',N'Cầu Giấy',33,22),
-(130,'2023-06-17','15000',N'Đã hủy đơn',N'tại quán',38,22),
-(131,'2023-06-17','15000',N'Đã hoàn thành',N'tại quán',43,22),
-(132,'2023-06-18','32000',N'Đã hoàn thành',N'tại quán',40,26),
-(133,'2023-06-18','45000',N'Đã hoàn thành',N'Tây Hồ',35,24),
-(134,'2023-06-18','62000',N'Đã hủy đơn',N'Mỹ Đình',44,22),
-(135,'2023-06-19','350000',N'Đã hoàn thành',N'tại quán',37,24),
-(136,'2023-06-19','60000',N'Đã hoàn thành',N'Ba Đình',33,24),
-(137,'2023-06-19','90000',N'Đã hủy đơn',N'Hà Đông',32,22),
-(138,'2023-06-19','350000',N'Đã hoàn thành',N'tại quán',40,28),	
-(139,'2023-06-15','150000',N'Đã hoàn thành',N'Cầu Giấy',41,22),
-(140,'2023-06-15','98000',N'Đã hoàn thành',N'Thanh Xuân',45,24);
+(126,'2023-06-16',145000,N'Đã hủy đơn',N'Cầu Giấy',9,26),
+(130,'2023-06-17',15000,N'Đã hủy đơn',N'tại quán',8,22),
+(131,'2023-06-17',15000,N'Đã hoàn thành',N'tại quán',13,22),
+(132,'2023-06-18',32000,N'Đã hoàn thành',N'tại quán',10,26),
+(134,'2023-06-18',62000,N'Đã hủy đơn',N'Mỹ Đình',4,22),
+(135,'2023-06-19',350000,N'Đã hoàn thành',N'tại quán',7,24),
+(137,'2023-06-19',90000,N'Đã hủy đơn',N'Hà Đông',12,22),
+(138,'2023-06-19',350000,N'Đã hoàn thành',N'tại quán',10,28);
 
 --ORDERDETAIL
 insert into ORDERDETAIL(Price,Quantity,ProductID,OrderID)
