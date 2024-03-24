@@ -17,7 +17,7 @@ select *
 from STAFF as S
 
 select * 
-from SUPPLIER as SP
+from USED_IN as UI
 
 select * 
-from USED_IN as UI
+from SUPPLIER
