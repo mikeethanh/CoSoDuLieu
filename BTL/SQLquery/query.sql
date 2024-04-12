@@ -25,7 +25,7 @@ select P.ProductID, P.ProductName, I.ItemName
 from PRODUCT as P
 left join  USED_IN as UI
 on P.ProductID = UI.ProductID
-left join ITEM as I
+join ITEM as I
 on UI.ItemID = I.ItemID
 
 --6. Cho biết sản phẩm được sử dụng bằng nguyên liệu hạt cà phê.
@@ -63,7 +63,7 @@ group by S.FirstName, S.LastName, (S.Salary + S.Allowance),year(S.DateStartWork)
 order by S.LastName,S.FirstName desc
 
 --9. Hãy cho biết mỗi khách hàng trong năm 2023 đã đặt bao nhiêu đơn hàng( ngoại trừ các đơn
---hàng tại quán) và tổng giá trị của đơn hàng là bao nhiêu, sắp xếp thứ tự tăng dần theo tổng
+--hàng tại quán) và tổng giá trị của tất cả đơn hàng là bao nhiêu, sắp xếp thứ tự tăng dần theo tổng
 --giá trị đơn hàng.
 
 select C.CustomerID,O.LocationOrders, count(O.OrderID) as totalOrders , sum(O.TotalPrice) as totalPrice
@@ -75,7 +75,8 @@ group by C.CustomerID,O.LocationOrders
 order by sum(O.TotalPrice)  
 
 --10. Hãy cho biết những khách hàng đã mua sản phầm cà phê đen, cà phê nâu và bạc xỉu với số 
---lượng từ 3 trở lên và cho biết hoá đơn mua từ ngày bao nhiêu, sắp xếp thứ tự từ điển theo họ và tên.
+--lượng từ 3 trở lên trong một hoá đơn và cho biết hoá đơn mua từ ngày bao nhiêu, sắp xếp thứ
+-- tự từ điển theo họ và tên.
 
 select C.CustomerID, C.FirstName, C.LastName, O.OrderID, O.OrderDate, OD.Quantity, P.ProductName
 from CUSTOMER as C
@@ -117,7 +118,7 @@ from
 				from ORDERDETAIL as od
 				where od.ProductID = p.ProductID
 			) as TotalOrders
-	FROM PRODUCT as p) AS Temp;
+	from PRODUCT as p) as Temp;
 
  --14. Lấy thông tin về đơn hàng, cùng với tổng giá trị đơn hàng và tỷ lệ giữa tổng giá trị đơn hàng so 
  --với phí giao hàng.
