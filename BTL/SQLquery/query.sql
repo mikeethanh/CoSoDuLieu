@@ -126,7 +126,7 @@ from
 		(select sum(OD.Price * OD.Quantity)
 		 from ORDERDETAIL as OD
 		 where OD.OrderID = O.OrderID
-		) as TotalPricePerOrders,
+		) as TotalPriceProduct,
 		round((select sum(OD.Price * OD.Quantity)
 		 from ORDERDETAIL as OD
 		 where OD.OrderID = O.OrderID
